@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahamed Gani Fathima Nuha — IT Lecturer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F1225;
+    --paper: #F7F7FB;
+    --ink: #171833;
+    --slate: #6B6F8C;
+    --violet: #6C5CE7;
+    --teal: #00D9C0;
+    --coral: #FF6B6B;
+    --line: rgba(23,24,51,0.1);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--paper); color:var(--ink); font-family:'Inter', sans-serif; line-height:1.65; overflow-x:hidden;}
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; line-height:1.15; }
+  a{color:inherit;}
+  .wrap{max-width:980px; margin:0 auto; padding:0 32px;}
+
+  nav{ position:sticky; top:0; z-index:50; background: rgba(15,18,37,0.92); backdrop-filter: blur(8px); padding: 16px 0; }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .badge{
+    width:40px; height:40px; border-radius:50%;
+    background: linear-gradient(135deg, var(--violet), var(--teal));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; color:#fff; font-size:0.85rem;
+  }
+  .nav-inner{ display:flex; align-items:center; gap:12px; color:#fff; font-weight:500; text-decoration:none;}
+  nav .links{ display:flex; gap:26px; font-size:0.92rem; color:#C9CBE8; }
+  nav .links a{ text-decoration:none; transition: color .2s; }
+  nav .links a:hover{ color:#fff; }
+  @media (max-width:640px){ nav .links{display:none;} }
+
+  header.hero{
+    position:relative;
+    background:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.14) 1.4px, transparent 0) 0 0/38px 38px,
+      linear-gradient(180deg, rgba(15,18,37,0.15), rgba(15,18,37,0.9)),
+      var(--bg);
+    color:#fff; padding: 90px 0 100px; overflow:hidden;
+  }
+  header.hero::before{
+    content:""; position:absolute; top:-140px; right:-120px; width:420px; height:420px; border-radius:50%;
+    background: radial-gradient(circle at 30% 30%, var(--violet), transparent 70%); opacity:0.55; filter: blur(10px);
+  }
+  header.hero::after{
+    content:""; position:absolute; bottom:-180px; left:-100px; width:360px; height:360px; border-radius:50%;
+    background: radial-gradient(circle at 60% 40%, var(--teal), transparent 70%); opacity:0.35; filter: blur(10px);
+  }
+  header.hero .wrap{ position:relative; z-index:2; }
+  .hero-avatar{
+    width:96px; height:96px; border-radius:50%;
+    background: linear-gradient(135deg, var(--violet), var(--teal));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; color:#fff; font-size:1.6rem;
+    margin-bottom: 28px; box-shadow: 0 20px 50px rgba(108,92,231,0.35);
+    opacity:0; animation: pop .6s ease forwards .1s;
+  }
+  header.hero h1{ font-size: clamp(2.3rem, 5.5vw, 3.6rem); max-width: 18ch; opacity:0; animation: rise .7s ease forwards .25s; }
+  header.hero .role{
+    margin-top:16px; font-size:1.15rem;
+    background: linear-gradient(90deg, var(--teal), var(--violet));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    font-weight:600; opacity:0; animation: rise .7s ease forwards .4s;
+  }
+  header.hero .location{ margin-top:10px; font-size:0.92rem; color:#9FA3C4; opacity:0; animation: rise .7s ease forwards .5s; }
+  header.hero .about{ margin-top:24px; max-width:64ch; font-size:1.03rem; color:#D3D5EC; opacity:0; animation: rise .7s ease forwards .6s; }
+  .hero-ctas{ margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; opacity:0; animation: rise .7s ease forwards .75s; }
+
+  .btn-primary, .btn-ghost{
+    padding:13px 26px; border-radius:999px; font-weight:600; font-size:0.95rem;
+    text-decoration:none; display:inline-block; transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary{ background: linear-gradient(135deg, var(--violet), var(--teal)); color:#fff; }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(108,92,231,0.4); }
+  .btn-ghost{ border:1px solid rgba(255,255,255,0.25); color:#fff; }
+  .btn-ghost:hover{ background: rgba(255,255,255,0.08); transform: translateY(-2px);}
+
+  @keyframes rise{ from{opacity:0; transform: translateY(16px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes pop{ from{opacity:0; transform: scale(.8);} to{opacity:1; transform:scale(1);} }
+
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  .section{ padding: 64px 0; border-bottom:1px solid var(--line); scroll-margin-top: 80px; }
+  .section:last-of-type{ border-bottom:none; }
+  .section-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:34px; }
+  .section-head .eyebrow{ font-size:0.8rem; color:var(--violet); font-weight:600; letter-spacing:0.04em; text-transform:uppercase; }
+  .section-head h2{ font-size:1.9rem; }
+
+  .skills-cat{ margin-bottom: 30px; }
+  .skills-cat:last-child{ margin-bottom:0; }
+  .skills-cat h3{ font-size:0.95rem; color:var(--slate); font-family:'Inter',sans-serif; font-weight:600; margin-bottom:14px; }
+  .tag-cloud{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tag{
+    padding: 9px 16px; border-radius:999px; font-size:0.9rem; font-weight:500;
+    background: #fff; border:1px solid var(--line); color:var(--ink);
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+  }
+  .tag:hover{
+    background: linear-gradient(135deg, var(--violet), var(--teal)); color:#fff; border-color:transparent;
+    transform: translateY(-3px); box-shadow: 0 10px 20px rgba(108,92,231,0.25);
+  }
+
+  .timeline-item{ position:relative; padding: 0 0 34px 28px; border-left: 2px solid var(--line); }
+  .timeline-item:last-child{ padding-bottom:0; }
+  .timeline-item::before{
+    content:""; position:absolute; left:-7px; top:2px; width:12px; height:12px; border-radius:50%;
+    background: linear-gradient(135deg, var(--violet), var(--teal));
+  }
+  .timeline-item .when{ color:var(--violet); font-size:0.85rem; font-weight:600; margin-bottom:4px; }
+  .timeline-item h3{ font-size:1.15rem; margin-bottom:2px;}
+  .timeline-item .org{ font-size:0.95rem; color:var(--coral); font-weight:600; margin-bottom:10px; }
+  .timeline-item ul{ padding-left: 18px; font-size:0.94rem; color:var(--slate); }
+  .timeline-item li{ margin-bottom:5px; }
+
+  .projects{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .project-card{
+    border-radius: 16px; padding: 22px 24px; background: #fff; border:1px solid var(--line);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .project-card:hover{ transform: translateY(-4px); box-shadow: 0 14px 30px rgba(23,24,51,0.08); }
+  .project-card h3{ font-size:1.05rem; margin-bottom:8px; }
+  .project-card p{ font-size:0.92rem; color:var(--slate); margin-bottom:10px; }
+  .project-card a{ font-size:0.85rem; color:var(--violet); font-weight:600; text-decoration:none; word-break: break-all; }
+  .project-card a:hover{ text-decoration:underline; }
+  @media (max-width:640px){ .projects{grid-template-columns: 1fr;} }
+
+  .lang-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .lang-chip{ padding: 14px 20px; border-radius:14px; background:#fff; border:1px solid var(--line); min-width:120px; }
+  .lang-chip .name{ font-weight:600; font-family:'Space Grotesk',sans-serif; }
+  .lang-chip .level{ color:var(--slate); font-size:0.85rem; margin-top:2px;}
+
+  .contact-section{ background: var(--bg); color:#fff; border-bottom:none; }
+  .contact-section .section-head h2{ color:#fff; }
+  .contact-grid{ display:flex; flex-wrap:wrap; gap:36px; margin-bottom:24px;}
+  .contact-item .label{ font-size:0.78rem; color:#9FA3C4; margin-bottom:4px; }
+  .contact-item .value{ font-size:1.05rem; }
+  .contact-item .value a{ text-decoration:none; color:#fff; border-bottom:1px solid rgba(255,255,255,0.3); }
+
+  footer{ padding: 26px 0 40px; font-size:0.85rem; color:#8386A8; background:var(--bg); text-align:center; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#home" class="nav-inner">
+      <div class="badge">AGFN</div>
+      <span>Ahamed Gani Fathima Nuha</span>
+    </a>
+    <div class="links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-avatar">AGFN</div>
+    <h1>Ahamed Gani Fathima Nuha</h1>
+    <p class="role">IT Lecturer · IT Support Officer · ICT Professional</p>
+    <p class="location">Kalmunai, Ampara, Sri Lanka</p>
+    <p class="about">Dedicated IT professional with a BA (Hons) in Information &amp; Communication Technology and a Higher National Diploma in English, combining strong academic knowledge with practical experience in IT education, technical support, networking, system administration, and web development.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#about" class="btn-ghost">About Me</a>
+    </div>
+  </div>
+</header>
+
+<section class="section reveal" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Background</div>
+        <h2>About</h2>
+      </div>
+    </div>
+    <p style="max-width:66ch; color:var(--slate); font-size:1.02rem; margin-bottom:20px;">Dedicated and motivated IT professional with a BA (Hons) in Information and Communication Technology and a Higher National Diploma in English, combining strong academic knowledge with practical experience in IT education, technical support, networking, system administration, web development, and academic coordination.</p>
+  </div>
+</section>
+
+<section class="section reveal" id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Career so far</div>
+        <h2>Experience &amp; Education</h2>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="when">2025 – 2026</div>
+      <h3>IT Lecturer Cum IT Support Officer</h3>
+      <div class="org">Standford College Higher Education</div>
+      <ul>
+        <li>Conduct lectures and practical sessions for IT-related subjects.</li>
+        <li>Provide technical support and troubleshoot hardware, software, and networking issues.</li>
+        <li>Coordinate tutorials, assignments, presentations, and mid-term examinations.</li>
+        <li>Support web-based applications and digital learning activities.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="when">2024 – 2025</div>
+      <h3>Temporary Demonstrator / IT Academic Support</h3>
+      <div class="org">South Eastern University of Sri Lanka</div>
+      <ul>
+        <li>Delivered lectures on Data Communication &amp; Networking, Web Development, DBMS, and E-Business.</li>
+        <li>Provided academic and technical support throughout coursework and practical activities.</li>
+        <li>Developed web-based applications, including an Online Leave Management System and Online Library Management System.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="when">2019 – 2023</div>
+      <h3>BA (Hons) in Information &amp; Communication Technology</h3>
+      <div class="org">South Eastern University of Sri Lanka</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="when">2021 – 2024</div>
+      <h3>Higher National Diploma (HND) in English</h3>
+      <div class="org">Advanced Technological Institute, Sammanthurai</div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Built &amp; deployed</div>
+        <h2>Selected Web Projects</h2>
+      </div>
+    </div>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Online Leave Management System</h3>
+        <p>A web-based application for managing online leave-related processes.</p>
+      </div>
+      <div class="project-card">
+        <h3>Online Library Management System</h3>
+        <p>A web-based library management solution to support digital library operations.</p>
+      </div>
+      <div class="project-card">
+        <h3>Mini Web Site</h3>
+        <p>Web development project.</p>
+        <a href="https://nusiigani98-bloom.github.io/mini-web-site/" target="_blank">View project →</a>
+      </div>
+      <div class="project-card">
+        <h3>JOBHUNT</h3>
+        <p>Web-based job-related project.</p>
+        <a href="https://nusiigani98-bloom.github.io/JOBHUNT/" target="_blank">View project →</a>
+      </div>
+      <div class="project-card">
+        <h3>Serenity Travel</h3>
+        <p>Travel-focused web project.</p>
+        <a href="https://nusiigani98-bloom.github.io/SERENITY-TRAVEL/" target="_blank">View project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Fluent in</div>
+        <h2>Languages</h2>
+      </div>
+    </div>
+    <div class="lang-row">
+      <div class="lang-chip"><div class="name">English</div><div class="level">Fluent</div></div>
+      <div class="lang-chip"><div class="name">Tamil</div><div class="level">Native</div></div>
+      <div class="lang-chip"><div class="name">Sinhala</div><div class="level">Fluent</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">What I bring</div>
+        <h2>Skills</h2>
+      </div>
+    </div>
+
+    <div class="skills-cat">
+      <h3>Core Skills</h3>
+      <div class="tag-cloud">
+        <span class="tag">IT Lecturing &amp; Training</span>
+        <span class="tag">IT Technical Support</span>
+        <span class="tag">System Administration</span>
+        <span class="tag">Network Administration</span>
+        <span class="tag">Technical Troubleshooting</span>
+        <span class="tag">Web Development &amp; Design</span>
+        <span class="tag">Database Management</span>
+        <span class="tag">Academic Coordination</span>
+        <span class="tag">Project Management</span>
+        <span class="tag">Documentation</span>
+      </div>
+    </div>
+
+    <div class="skills-cat">
+      <h3>Technical Skills</h3>
+      <div class="tag-cloud">
+        <span class="tag">Networking</span>
+        <span class="tag">Web Development</span>
+        <span class="tag">DBMS</span>
+        <span class="tag">Microsoft Office</span>
+        <span class="tag">User &amp; Device Configuration</span>
+        <span class="tag">E-Business Applications</span>
+      </div>
+    </div>
+
+    <div class="skills-cat">
+      <h3>Professional Skills</h3>
+      <div class="tag-cloud">
+        <span class="tag">Communication</span>
+        <span class="tag">Teamwork</span>
+        <span class="tag">Problem Solving</span>
+        <span class="tag">Time Management</span>
+        <span class="tag">Adaptability</span>
+        <span class="tag">Self-Motivation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact-section reveal" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Let's connect</div>
+        <h2>Contact</h2>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-item"><div class="label">Email</div><div class="value"><a href="mailto:nuha2018ag@gmail.com">nuha2018ag@gmail.com</a></div></div>
+      <div class="contact-item"><div class="label">Location</div><div class="value">Kalmunai, Ampara, Sri Lanka</div></div>
+      <div class="contact-item"><div class="label">LinkedIn</div><div class="value"><a href="https://www.linkedin.com/in/fathima-nuha-301854433" target="_blank">linkedin.com/in/fathima-nuha-301854433</a></div></div>
+    </div>
+    <a href="mailto:nuha2018ag@gmail.com" class="btn-primary">Email Me</a>
+  </div>
+</section>
+
+<footer>© 2026 Ahamed Gani Fathima Nuha</footer>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  items.forEach(i => io.observe(i));
+</script>
+
+</body>
+</html>
